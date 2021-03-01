@@ -4,6 +4,7 @@ from moviesapp.api import views as movie_views
 
 router = routers.DefaultRouter()
 router.register(r'movies', movie_views.MovieViewSet)
+router.register(r'ratings', movie_views.RatingViewSet)
 
 # Wire up our API using automatic URL routing.
 # Additionally, we include login URLs for the browsable API.
