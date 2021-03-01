@@ -9,7 +9,7 @@ from django.views.generic import TemplateView
 
 urlpatterns = [
     path('', TemplateView.as_view(template_name='pages/home.html'), name='home'),
-    path('movies/', include('moviesapp.movies.urls')),
+    path('movies/', include('moviesapp.movies.urls'), name='movies'),
     path('api/', include('moviesapp.api.urls')),
 
     path(settings.ADMIN_URL, admin.site.urls),  # {% url 'admin:index' %}

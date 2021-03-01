@@ -13,12 +13,25 @@ from .models import Movie
 
 class MovieListView(ListView):
     """Show all movies."""
-
     model = Movie
+    template_name = 'movies/movie_list.html'
+    context_object_name = 'movie_list'
+
+
+    def get_context_data(self, **kwargs):
+        context = super(MovieListView, self).get_context_data(**kwargs)
+        return context
 
 
 class MovieDetailView(DetailView):
     """Show the requested movie."""
+    model = Movie
+    template_name = 'movies/movie_detail.html'
+    context_object_name = 'movie'
+
+    def get_context_data(self, **kwargs):
+        context = super(MovieDetailView, self).get_context_data(**kwargs)
+        return context
 
 
 class MovieCreateView(CreateView):
