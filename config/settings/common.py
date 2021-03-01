@@ -28,10 +28,13 @@ DJANGO_APPS = (
     # Admin
     'django.contrib.admin',
 )
-THIRD_PARTY_APPS = ()
+THIRD_PARTY_APPS = (
+    'rest_framework',
+)
 
 LOCAL_APPS = (
     'moviesapp.movies.apps.MoviesConfig',
+    'moviesapp.api.apps.ApiConfig'
 )
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
@@ -106,6 +109,14 @@ TEMPLATES = [
         },
     },
 ]
+
+# DJANGO REST FRAMEWORK
+
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+    ]
+}
 
 STATIC_ROOT = os.path.join(ROOT_DIR, 'staticfiles/')
 STATIC_URL = '/static/'
