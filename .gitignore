@@ -13,3 +13,6 @@ __pycache__/
 
 #Pycharm Editor
 .idea/*
+
+# Django stuff:
+staticfiles/

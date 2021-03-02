@@ -4,15 +4,15 @@
 {% block content %}
 <div class="row">
   <div class="col-sm-12">
-      <h3>{{ movie.title }}</h3>
-      <p>{{ movie.plot }}</p>
+      <h3>{{ object.title }}</h3>
+      <p>{{ object.plot }}</p>
     <ul>
-        <li>Year: {{ movie.year }}</li>
-        <li>Rated: {{ movie.rated }}</li>
-        <li>Released on: {{ movie.released_on }}</li>
-        <li>Genre: {{ movie.genre }}</li>
-        <li>Director: {{ movie.director }}</li>
-        <li>Rating: {{ movie.get_rating_movie }}</li>
+        <li>Year: {{ object.year }}</li>
+        <li>Rated: {{ object.rated }}</li>
+        <li>Released on: {{ object.released_on }}</li>
+        <li>Genre: {{ object.genre }}</li>
+        <li>Director: {{ object.director }}</li>
+        <li>Rating: {{ object.get_rating_movie }}</li>
     </ul>
   </div>
 </div>

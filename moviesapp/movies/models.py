@@ -31,7 +31,7 @@ class Movie(models.Model):
         ordering = ['-released_on', '-rated']
 
     def get_absolute_url(self):
-        return reverse('movies:detail', kwargs={'id': self.pk})
+        return reverse('movies:detail', kwargs={'id': self.id})
 
     def get_rating_movie(self):
         rating_avg = Rating.objects.filter(reviewed_movie=self.pk).aggregate(Avg('rating')).get('rating__avg')

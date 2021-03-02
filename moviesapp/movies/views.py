@@ -23,7 +23,9 @@ class MovieDetailView(DetailView):
     """Show the requested movie."""
     model = Movie
     template_name = 'movies/movie_detail.html'
-    context_object_name = 'movie'
+
+    def get_object(self, queryset=None):
+        return Movie.objects.get(pk=self.kwargs.get("id"))
 
 
 class MovieCreateView(CreateView):
@@ -57,8 +59,21 @@ class MovieUpdateView(UpdateView):
         "released_on",
     ]
 
+    def get_object(self, queryset=None):
+        try:
+            movie, created = Movie.objects.get_or_create(pk=self.kwargs.get("id"))
+            return movie
+        except Movie.DoesNotExist:
+            try:
+                return Movie.objects.get(pk=self.kwargs.get("id"))
+            except:
+                return None
+
 
 class MovieDeleteView(DeleteView):
     """Delete the requested movie."""
     model = Movie
     success_url = "/movies"
+
+    def get_object(self, queryset=None):
+        return Movie.objects.get(pk=self.kwargs.get("id"))
