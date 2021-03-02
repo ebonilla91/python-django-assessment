@@ -1,1 +1,1 @@
-web: gunicorn python-django-assessment.config.wsgi --log-file -
+web: gunicorn config.wsgi --log-file -
