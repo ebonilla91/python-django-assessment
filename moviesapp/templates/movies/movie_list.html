@@ -13,6 +13,7 @@
       <th><b>Released on</b></th>
       <th><b>Genre</b></th>
       <th><b>Director</b></th>
+      <th><b>Rating</b></th>
     </tr>
   </thead>
   <tbody>
@@ -24,6 +25,7 @@
       <td>{{ movie.released_on }}</td>
       <td>{{ movie.genre }}</td>
       <td>{{ movie.director }}</td>
+      <td>{{ movie.get_rating_movie }}</td>
       <!-- TODO: Render more movie properties and make sure action links work -->
 {#      <td><a href="{% url 'movies:update' movie.pk %}">Edit</a></td>#}
 {#      <td><a href="{% url 'movies:delete' movie.pk %}">Delete</a></td>#}

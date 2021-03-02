@@ -9,6 +9,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/dev/ref/settings/
 """
 import os
+import dj_database_url 
 
 ROOT_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 APPS_DIR = os.path.join(ROOT_DIR, 'moviesapp/')
@@ -30,6 +31,7 @@ DJANGO_APPS = (
 )
 THIRD_PARTY_APPS = (
     'rest_framework',
+    'rest_framework.authtoken',
 )
 
 LOCAL_APPS = (
@@ -40,6 +42,7 @@ LOCAL_APPS = (
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 
 MIDDLEWARE = (
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -54,7 +57,7 @@ MIGRATION_MODULES = {
 }
 
 DEBUG = True
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['*', 'herokudjangoapp.herokuapp.com']
 SECRET_KEY = 'CHANGEME'
 
 FIXTURE_DIRS = (
@@ -110,12 +113,12 @@ TEMPLATES = [
     },
 ]
 
-# DJANGO REST FRAMEWORK
 REST_FRAMEWORK = {
-   'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.AllowAny'
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication',
     ]
 }
+
 
 STATIC_ROOT = os.path.join(ROOT_DIR, 'staticfiles/')
 STATIC_URL = '/static/'
@@ -155,3 +158,9 @@ AUTHENTICATION_BACKENDS = (
 )
 
 ADMIN_URL = 'admin/'
+
+#  Add configuration for static files storage using whitenoise
+#STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
+
+prod_db = dj_database_url.config(conn_max_age=500)
+DATABASES['default'].update(prod_db)
