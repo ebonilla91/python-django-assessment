@@ -2,12 +2,18 @@
 {% load static i18n %}
 {% block title %}{% trans 'Movie' %}: {{ movie.title }}{% endblock %}
 {% block content %}
-<h3>{{ movie.title }}</h3>
 <div class="row">
   <div class="col-sm-12">
-    <dl class="dl-horizontal">
-      <!-- TODO: Implement movie details view-->
-    </dl>
+      <h3>{{ movie.title }}</h3>
+      <p>{{ movie.plot }}</p>
+    <ul>
+        <li>Year: {{ movie.year }}</li>
+        <li>Rated: {{ movie.rated }}</li>
+        <li>Released on: {{ movie.released_on }}</li>
+        <li>Genre: {{ movie.genre }}</li>
+        <li>Director: {{ movie.director }}</li>
+        <li>Rating: {{ movie.get_rating_movie }}</li>
+    </ul>
   </div>
 </div>
 {% endblock %}

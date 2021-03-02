@@ -16,11 +16,7 @@ class MovieListView(ListView):
     model = Movie
     template_name = 'movies/movie_list.html'
     context_object_name = 'movie_list'
-
-
-    def get_context_data(self, **kwargs):
-        context = super(MovieListView, self).get_context_data(**kwargs)
-        return context
+    ordering = ['-released_on', '-rated']
 
 
 class MovieDetailView(DetailView):
@@ -29,18 +25,40 @@ class MovieDetailView(DetailView):
     template_name = 'movies/movie_detail.html'
     context_object_name = 'movie'
 
-    def get_context_data(self, **kwargs):
-        context = super(MovieDetailView, self).get_context_data(**kwargs)
-        return context
-
 
 class MovieCreateView(CreateView):
     """Create a new movie."""
+    model = Movie
+    success_url = "/movies"
+
+    fields = [
+        "title",
+        "plot",
+        "year",
+        "rated",
+        "genre",
+        "director",
+        "released_on",
+    ]
 
 
 class MovieUpdateView(UpdateView):
     """Update the requested movie."""
+    model = Movie
+    success_url = "/movies"
+
+    fields = [
+        "title",
+        "plot",
+        "year",
+        "rated",
+        "genre",
+        "director",
+        "released_on",
+    ]
 
 
 class MovieDeleteView(DeleteView):
     """Delete the requested movie."""
+    model = Movie
+    success_url = "/movies"
